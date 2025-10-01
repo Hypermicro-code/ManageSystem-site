@@ -66,7 +66,9 @@ export async function updateProduct(id:string, patch: Partial<Product>){
   const idx = all.findIndex(p=>p.id===id); if(idx<0) throw new Error("Not found");
   all[idx] = { ...all[idx], ...patch }; save(KEY_PRODUCTS, all); return all[idx];
 }
+/* ==== [BLOCK: adminApi mock — fix deleteProduct] BEGIN ==== */
 export async function deleteProduct(id:string){
-  const all = load<Product[]>(KEY_PRODUCTS, []).filter(p=>p.id!==p.id); // intentionally wrong? fix
+  const all = load<Product[]>(KEY_PRODUCTS, []).filter(p=>p.id!==id);
+  save(KEY_PRODUCTS, all);
 }
-/* ==== [BLOCK: adminApi mock] END ==== */
+/* ==== [BLOCK: adminApi mock — fix deleteProduct] END ==== */
