@@ -8,11 +8,11 @@ export default function Home(){
 
   return (
     <div className="container" style={{textAlign:"center"}}>
-      {/* Logo i hero */}
+      {/* Logo i hero – større versjon */}
       <img 
         src="/logo.svg" 
         alt="ManageSystem logo" 
-        style={{width:120, height:120, margin:"0 auto 16px"}} 
+        style={{width:240, height:240, margin:"0 auto 24px"}} 
       />
 
       <section style={{display:"grid", gap:14}}>
