@@ -8,7 +8,7 @@ export default function Home(){
 
   return (
     <div>
-      {/* Hero med gradient bakgrunn */}
+      {/* Hero med logo – nå uten full viewport-høyde */}
       <section className="hero">
         <div className="heroInner">
           <img 
@@ -25,7 +25,7 @@ export default function Home(){
         </div>
       </section>
 
-      {/* Seksjon: Apper */}
+      {/* Seksjon: Apper – vises nå uten scroll på de fleste skjermer */}
       <section className="appsSection">
         <h2>{t("apps_title")}</h2>
         <div className="container" style={{textAlign:"left"}}>
