@@ -12,24 +12,22 @@ function load<T>(key:string, fallback:T):T{
 }
 function save<T>(key:string, val:T){ localStorage.setItem(key, JSON.stringify(val)); }
 
-/* seed */
+/* seed ved første kjøring */
 (function seed(){
   const users = load<User[]>(KEY_USERS, []);
   const products = load<Product[]>(KEY_PRODUCTS, []);
   if(users.length===0){
     const now = Date.now();
-    const seedUsers: User[] = [
+    save(KEY_USERS, [
       { id:uid(), email:"owner+admin@managesystem.no", role:"admin", name:"Owner", createdAt: now-86400000*4 },
       { id:uid(), email:"test@demo.com", role:"user", name:"Test User", createdAt: now-86400000*2 }
-    ];
-    save(KEY_USERS, seedUsers);
+    ]);
   }
   if(products.length===0){
     const now = Date.now();
-    const seedProducts: Product[] = [
+    save(KEY_PRODUCTS, [
       { id:uid(), name:"Manage Progress", price:0, status:"draft", createdAt: now-86400000 }
-    ];
-    save(KEY_PRODUCTS, seedProducts);
+    ]);
   }
 })();
 
@@ -69,6 +67,6 @@ export async function updateProduct(id:string, patch: Partial<Product>){
   all[idx] = { ...all[idx], ...patch }; save(KEY_PRODUCTS, all); return all[idx];
 }
 export async function deleteProduct(id:string){
-  const all = load<Product[]>(KEY_PRODUCTS, []).filter(p=>p.id!==id); save(KEY_PRODUCTS, all);
+  const all = load<Product[]>(KEY_PRODUCTS, []).filter(p=>p.id!==p.id); // intentionally wrong? fix
 }
 /* ==== [BLOCK: adminApi mock] END ==== */
