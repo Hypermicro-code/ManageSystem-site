@@ -183,7 +183,7 @@ body::before{
   pointer-events: none;
   background: url("/logo.svg") no-repeat center center;
   background-size: min(70vh, 70vw); /* skalerer så den alltid fyller mye av skjermen */
-    opacity: 0.50; /* litt sterkere */
+    opacity: 0.62; /* litt sterkere */
   filter: grayscale(100%) contrast(110%) brightness(90%);
   mix-blend-mode: multiply; /* gjør at den synes bedre på lys bakgrunn */
 }
