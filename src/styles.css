@@ -104,3 +104,45 @@ a:hover{ text-decoration: underline; }
 .spacer{ height:12px; }
 .hr{ border-top:1px solid var(--border); margin:16px 0; }
 /* ==== [BLOCK: Helper] END ==== */
+/* ==== [BLOCK: Hero styling] BEGIN ==== */
+.hero {
+  min-height: 100vh; /* fyller hele skjermen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, var(--bg) 0%, #ffffff 90%);
+}
+
+.heroInner {
+  text-align: center;
+  max-width: 800px;
+  padding: 40px 20px;
+}
+
+.heroLogo {
+  width: min(360px, 70vw);
+  height: auto;
+  margin: 0 auto 32px;
+  display: block;
+}
+
+.heroSub {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* ==== [BLOCK: Hero styling] END ==== */
+
+/* ==== [BLOCK: Apps section styling] BEGIN ==== */
+.appsSection {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+/* ==== [BLOCK: Apps section styling] END ==== */
