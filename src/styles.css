@@ -168,3 +168,21 @@ body::before{
   margin: 0 auto;
 }
 /* ==== [BLOCK: Apps section styling] END ==== */
+
+/* ==== [BLOCK: Page background watermark] BEGIN ==== */
+.pageWithWatermark {
+  position: relative;
+  min-height: 100%;
+}
+
+.pageWithWatermark::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: url("/logo.svg") no-repeat center center;
+  background-size: min(70vh, 70vw); /* skalerer så den alltid fyller mye av skjermen */
+  opacity: 0.06; /* veldig svakt watermark */
+}
+/* ==== [BLOCK: Page background watermark] END ==== */
