@@ -16,8 +16,15 @@ import Feedback from "./pages/Feedback";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Account from "./pages/Account";
-import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import AdminSignIn from "./pages/AdminSignIn";
+
+// Admin pages
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 /* ---- Protected routes helpers ---- */
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -27,7 +34,7 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
 function AdminRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
-  return user?.role === "admin" ? <>{children}</> : <Navigate to="/signin" replace />;
+  return user?.role === "admin" ? <>{children}</> : <Navigate to="/admin/signin" replace />;
 }
 
 export default function App() {
@@ -41,12 +48,15 @@ export default function App() {
           <NavBar />
           <main className={`mainContent ${isHome ? "" : "pageWithWatermark"}`}>
             <Routes>
+              {/* Public */}
               <Route path="/" element={<Home />} />
               <Route path="/apps" element={<Apps />} />
               <Route path="/apps/manage-progress" element={<AppDetailManageProgress />} />
               <Route path="/education" element={<Education />} />
               <Route path="/about" element={<About />} />
               <Route path="/feedback" element={<Feedback />} />
+
+              {/* Auth */}
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route
@@ -57,14 +67,27 @@ export default function App() {
                   </PrivateRoute>
                 }
               />
+
+              {/* Admin auth */}
+              <Route path="/admin/signin" element={<AdminSignIn />} />
+
+              {/* Admin (nested) */}
               <Route
                 path="/admin"
                 element={
                   <AdminRoute>
-                    <Admin />
+                    <AdminLayout />
                   </AdminRoute>
                 }
-              />
+              >
+                <Route index element={<AdminOverview />} />
+                <Route path="overview" element={<AdminOverview />} />
+                <Route path="users" element={<AdminUsers />} />
+                <Route path="products" element={<AdminProducts />} />
+                <Route path="settings" element={<AdminSettings />} />
+              </Route>
+
+              {/* 404 */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
