@@ -1,6 +1,6 @@
 /* ==== [BLOCK: App shell] BEGIN ==== */
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { I18nProvider } from "./core/i18n";
 import { AuthProvider, useAuth } from "./core/auth";
 import NavBar from "./components/NavBar";
@@ -31,12 +31,15 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
     <I18nProvider>
       <AuthProvider>
         <div className="appRoot">
           <NavBar />
-          <main className="mainContent">
+          <main className={`mainContent ${isHome ? "" : "pageWithWatermark"}`}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/apps" element={<Apps />} />
