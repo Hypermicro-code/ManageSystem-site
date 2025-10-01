@@ -21,9 +21,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (raw) setUser(JSON.parse(raw));
   }, []);
 
-  const signIn = async (email: string, _password: string) => {
-    // MOCK: admin if email ends with +admin
-    const role: Role = email.includes("+admin") ? "admin" : "user";
+  const signIn = async (email: string, password: string) => {
+    // ==== admin-regel (MVP):
+    // - e-post med "+admin" ELLER passord som starter med "admin#" gir rolle "admin"
+    const isAdmin = email.includes("+admin") || password.startsWith("admin#");
+    const role: Role = isAdmin ? "admin" : "user";
     const u = { id: "local", email, role };
     localStorage.setItem("ms_user", JSON.stringify(u));
     setUser(u);
