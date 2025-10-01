@@ -196,4 +196,13 @@ body::before{
 }
 /* ==== [BLOCK: Page background watermark — using mask] END ==== */
 
+/* ==== [BLOCK: Page content style] BEGIN ==== */
+/* Fjerner hvite bokser på undersider */
+.pageWithWatermark .container {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+/* ==== [BLOCK: Page content style] END ==== */
 
