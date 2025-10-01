@@ -172,7 +172,7 @@ body::before{
 /* ==== [BLOCK: Page background watermark — using mask] BEGIN ==== */
 :root{
   /* justér gjerne intensitet og størrelse her */
-  --wm-color: rgba(15, 23, 42, 0.18); /* mørk blå/svart med lav alpha */
+  --wm-color: rgba(15, 23, 42, 0.28); /* mørk blå/svart med lav alpha */
   --wm-size: min(110vh, 110vw);        /* “helside” watermark */
 }
 
