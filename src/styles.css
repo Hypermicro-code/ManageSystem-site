@@ -183,7 +183,7 @@ body::before{
   pointer-events: none;
   background: url("/logo.svg") no-repeat center center;
   background-size: min(90vh, 90vw); /* større watermark */
-  opacity: 0.15; /* nok til å sees uten å ta fokus */
+  opacity: 0.75; /* nok til å sees uten å ta fokus */
   filter: grayscale(100%) contrast(120%) brightness(85%);
   mix-blend-mode: multiply; /* gir kontrast mot lys bakgrunn */
 }
