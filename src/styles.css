@@ -182,9 +182,10 @@ body::before{
   z-index: -2;
   pointer-events: none;
   background: url("/logo.svg") no-repeat center center;
-  background-size: min(70vh, 70vw); /* skalerer så den alltid fyller mye av skjermen */
-    opacity: 0.75; /* litt sterkere */
-  filter: grayscale(100%) contrast(110%) brightness(90%);
-  mix-blend-mode: multiply; /* gjør at den synes bedre på lys bakgrunn */
+  background-size: min(90vh, 90vw); /* større watermark */
+  opacity: 0.15; /* nok til å sees uten å ta fokus */
+  filter: grayscale(100%) contrast(120%) brightness(85%);
+  mix-blend-mode: multiply; /* gir kontrast mot lys bakgrunn */
 }
 /* ==== [BLOCK: Page background watermark] END ==== */
+
