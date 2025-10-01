@@ -169,7 +169,13 @@ body::before{
 }
 /* ==== [BLOCK: Apps section styling] END ==== */
 
-/* ==== [BLOCK: Page background watermark] BEGIN ==== */
+/* ==== [BLOCK: Page background watermark — using mask] BEGIN ==== */
+:root{
+  /* justér gjerne intensitet og størrelse her */
+  --wm-color: rgba(15, 23, 42, 0.08); /* mørk blå/svart med lav alpha */
+  --wm-size: min(110vh, 110vw);        /* “helside” watermark */
+}
+
 .pageWithWatermark {
   position: relative;
   min-height: 100%;
@@ -181,11 +187,18 @@ body::before{
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background: url("/logo.svg") no-repeat center center;
-  background-size: min(90vh, 90vw); /* større watermark */
-  opacity: 0.75; /* nok til å sees uten å ta fokus */
-  filter: grayscale(100%) contrast(120%) brightness(85%);
-  mix-blend-mode: multiply; /* gir kontrast mot lys bakgrunn */
+
+  /* ENSFARGET fyll som ikke påvirkes av bakgrunnen */
+  background-color: var(--wm-color);
+
+  /* Bruk logoen som maske (shape), ikke som bilde med gjennomsiktighet */
+  -webkit-mask: url("/logo.svg") center / var(--wm-size) no-repeat;
+  mask: url("/logo.svg") center / var(--wm-size) no-repeat;
+
+  /* Viktig: ingen blend-mode nå */
+  mix-blend-mode: normal;
+  filter: none;
+  opacity: 1; /* styr intensitet med --wm-color i stedet */
 }
-/* ==== [BLOCK: Page background watermark] END ==== */
+/* ==== [BLOCK: Page background watermark — using mask] END ==== */
 
