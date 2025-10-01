@@ -24,6 +24,29 @@ a{ color: var(--primary); text-decoration: none; }
 a:hover{ text-decoration: underline; }
 /* ==== [BLOCK: Base] END ==== */
 
+/* ==== [BLOCK: Background center stripe gradient] BEGIN ==== */
+/* Legger en fast bakgrunn over hele siden som gir hvit stripe i midten,
+   som gradvis går til var(--bg) mot sidene. Ingen harde overganger. */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--bg) 0%,
+    var(--bg) 12%,
+    rgba(255,255,255,0.75) 28%,
+    #ffffff 50%,
+    rgba(255,255,255,0.75) 72%,
+    var(--bg) 88%,
+    var(--bg) 100%
+  );
+}
+/* ==== [BLOCK: Background center stripe gradient] END ==== */
+
+
 /* ==== [BLOCK: Layout] BEGIN ==== */
 .appRoot{
   min-height:100%;
@@ -104,23 +127,22 @@ a:hover{ text-decoration: underline; }
 .spacer{ height:12px; }
 .hr{ border-top:1px solid var(--border); margin:16px 0; }
 /* ==== [BLOCK: Helper] END ==== */
+
 /* ==== [BLOCK: Hero styling] BEGIN ==== */
 .hero {
-  min-height: 100vh; /* fyller hele skjermen */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to bottom, var(--bg) 0%, #ffffff 90%);
+  /* Ikke full høyde – så Apper vises uten scroll */
+  padding: 56px 20px 40px;
+  background: transparent; /* bakgrunn håndteres nå av body::before */
 }
 
 .heroInner {
   text-align: center;
   max-width: 800px;
-  padding: 40px 20px;
+  margin: 0 auto;
 }
 
 .heroLogo {
-  width: min(360px, 70vw);
+  width: min(360px, 70vw); /* stor, men responsiv */
   height: auto;
   margin: 0 auto 32px;
   display: block;
