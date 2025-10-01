@@ -25,13 +25,11 @@ a:hover{ text-decoration: underline; }
 /* ==== [BLOCK: Base] END ==== */
 
 /* ==== [BLOCK: Background center stripe gradient] BEGIN ==== */
-/* Legger en fast bakgrunn over hele siden som gir hvit stripe i midten,
-   som gradvis går til var(--bg) mot sidene. Ingen harde overganger. */
 body::before{
   content:"";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -3;            /* var -1: legg stripen lengst bak */
   pointer-events: none;
   background: linear-gradient(
     90deg,
@@ -45,6 +43,7 @@ body::before{
   );
 }
 /* ==== [BLOCK: Background center stripe gradient] END ==== */
+
 
 
 /* ==== [BLOCK: Layout] BEGIN ==== */
@@ -171,9 +170,8 @@ body::before{
 
 /* ==== [BLOCK: Page background watermark — using mask] BEGIN ==== */
 :root{
-  /* justér gjerne intensitet og størrelse her */
-  --wm-color: rgba(15, 23, 42, 0.28); /* mørk blå/svart med lav alpha */
-  --wm-size: min(110vh, 110vw);        /* “helside” watermark */
+  --wm-color: rgba(15, 23, 42, 0.10); /* juster intensitet her */
+  --wm-size: min(110vh, 110vw);
 }
 
 .pageWithWatermark {
@@ -185,20 +183,17 @@ body::before{
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -2; /* foran stripen (-3), bak innholdet (default stacking) */
   pointer-events: none;
 
-  /* ENSFARGET fyll som ikke påvirkes av bakgrunnen */
   background-color: var(--wm-color);
-
-  /* Bruk logoen som maske (shape), ikke som bilde med gjennomsiktighet */
   -webkit-mask: url("/logo.svg") center / var(--wm-size) no-repeat;
   mask: url("/logo.svg") center / var(--wm-size) no-repeat;
 
-  /* Viktig: ingen blend-mode nå */
   mix-blend-mode: normal;
   filter: none;
-  opacity: 1; /* styr intensitet med --wm-color i stedet */
+  opacity: 1; /* styr via --wm-color */
 }
 /* ==== [BLOCK: Page background watermark — using mask] END ==== */
+
 
